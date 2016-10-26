@@ -10,7 +10,7 @@ const SearchBar = ({onSearch}) => (
     <ToolbarGroup>
       <TextField
         hintText="What would you like to drink?"
-        ref={(input) => inputRef = input}
+        ref={(input) => inputRef = input} //set inputRef to value of SearchBar, to be passed back up to App
       />
       <FlatButton onClick={() => onSearch(inputRef.getValue())} label="Search" primary={true} />
     </ToolbarGroup>
