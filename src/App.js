@@ -4,15 +4,25 @@ import SearchBar from './components/SearchBar'
 import './App.css'
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardHeader,CardText} from 'material-ui/Card';
+import {Marker} from 'react-google-maps';
+import SimpleMap from './components/SimpleMap';
 
 class App extends Component {
 
   constructor() {
     super();
-    this.state = {products: []};
-    this.searchByQuery = this.searchByQuery.bind(this);
+    this.state = {
+      products: [],
+      coords: {
+        latitude: 1,
+        longitude: 1
+      }
+    };
+    navigator.geolocation.getCurrentPosition((e) => this.setState({coords: e.coords}));
+    this.searchByQuery = this.searchByQuery.bind(this); //bind searchByQuery to this, otherwise it is undefined
   }
 
+  //Gets value of SearchBar and queries LCBO API for that value, sets state
   searchByQuery(query) {
     axios.get(`http://lcboapi.com/products?q=${query}`, {
       headers: {
@@ -33,6 +43,7 @@ class App extends Component {
     return (
       <div className="App">
         <SearchBar onSearch={this.searchByQuery}/>
+        <SimpleMap lat={this.state.coords.latitude} long={this.state.coords.longitude} />
         <Card>
           <CardHeader title='Results' />
           <CardText>
