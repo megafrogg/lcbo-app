@@ -7,10 +7,11 @@ const ResultsCard = ({products}) => (
     <CardHeader title='Results' />
     <CardText>
       <List>
-        {products.map(product => <ListItem key={product.id} primaryText={product.name} />)}
+        {products.map(product => <ListItem key={product.id} primaryText={product.name} secondaryText={"$" + (product.price_in_cents/100).toFixed(2)} />)}
       </List>
     </CardText>
   </Card>
 );
 
 export default ResultsCard;
+
