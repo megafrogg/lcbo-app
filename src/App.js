@@ -65,6 +65,7 @@ class App extends Component {
 
         <SearchBar onSearch={this.searchByQuery}/>
 
+
         //Displays Google Map centered on user's location
         <div style={{display: 'flex'}}> //Map and details card in flexbox
           <div id='map-wrapper'>
