@@ -77,8 +77,8 @@ class App extends Component {
         </div>
 
         //Drink category selection buttons
-
         <CategoryShow showCategory={this.showCategory} />
+
 
 
         //Card displaying result of search/category selection
