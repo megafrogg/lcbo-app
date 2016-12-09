@@ -6,7 +6,7 @@ import DetailsCard from './components/DetailsCard'
 import './App.css'
 import {Marker} from 'react-google-maps';
 import SimpleMap from './components/SimpleMap';
-import RaisedButton from 'material-ui/RaisedButton';
+import CategoryShow from './components/CategoryShow';
 
 class App extends Component {
 
@@ -43,9 +43,8 @@ class App extends Component {
   }
 
   showCategory(category) {
-    axios.get(`http://lcboapi.com/v2/categories/${category}`, {
+    axios.get(`http://lcboapi.com/products?q=${category}`, {
       headers: {
-        'Accept': 'application/vnd.api+json',
         'Authorization': 'Token MDo1ZWYzMThmMC03ZTg5LTExZTYtYmZhYy1hYjg2ZGM5NmRiYjE6RlZKc3I3STB5UkdUanJ0V1M3MUNQUkk0dURoRE1FOUJ3Mnhj'
       }
     })
@@ -55,7 +54,7 @@ class App extends Component {
       })
 
     });
-    
+
   }
 
   render() {
@@ -76,10 +75,9 @@ class App extends Component {
             <DetailsCard />
           </div>
         </div>
+
         //Drink category selection buttons
-        <RaisedButton onClick={this.showCategory("beer")} label="Beer" />
-        <RaisedButton onClick={this.showCategory("wine")} label="Wine" />
-        <RaisedButton onClick={this.showCategory("spirits")} label="Spirits" />
+        <CategoryShow showCategory={this.showCategory} />
 
         //Card displaying result of search/category selection
         <ResultsCard products={this.state.products} />
