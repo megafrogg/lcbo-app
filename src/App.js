@@ -6,7 +6,7 @@ import DetailsCard from './components/DetailsCard'
 import './App.css'
 import {Marker} from 'react-google-maps';
 import SimpleMap from './components/SimpleMap';
-import RaisedButton from 'material-ui/RaisedButton';
+import CategoryShow from './components/CategoryShow';
 
 class App extends Component {
 
@@ -75,10 +75,11 @@ class App extends Component {
             <DetailsCard />
           </div>
         </div>
+
         //Drink category selection buttons
-        <RaisedButton onClick={() => this.showCategory("beer")} label="Beer" />
-        <RaisedButton onClick={() => this.showCategory("wine")} label="Wine" />
-        <RaisedButton onClick={() => this.showCategory("spirits")} label="Spirits" />
+
+        <CategoryShow showCategory={this.showCategory} />
+
 
         //Card displaying result of search/category selection
         <ResultsCard products={this.state.products} />
